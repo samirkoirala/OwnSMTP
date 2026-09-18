@@ -1,0 +1,22 @@
+services:
+  email-gateway:
+    build: .
+    image: internal-email-gateway:latest
+    container_name: email-gateway
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      # Bind only to the VM's private VPC address in production.
+      - "${PRIVATE_BIND_IP:-127.0.0.1}:8000:8000"
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m,mode=1777
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
