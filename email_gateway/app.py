@@ -5,13 +5,10 @@ import os
 from uuid import uuid4
 
 from fastapi import FastAPI, Request, Response
-from fastapi.staticfiles import StaticFiles
 from starlette.middleware.base import RequestResponseEndpoint
 
 from . import __version__
 from .api import router
-from .web import WEB_ROOT
-from .web import router as web_router
 
 
 def create_app() -> FastAPI:
@@ -42,8 +39,6 @@ def create_app() -> FastAPI:
         response.headers["Referrer-Policy"] = "no-referrer"
         return response
 
-    application.mount("/assets", StaticFiles(directory=WEB_ROOT), name="assets")
-    application.include_router(web_router)
     application.include_router(router)
     return application
 

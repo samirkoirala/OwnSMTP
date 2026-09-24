@@ -14,16 +14,13 @@ def test_health_endpoint_adds_security_and_request_headers():
     assert response.headers["X-Content-Type-Options"] == "nosniff"
 
 
-def test_landing_page_and_stylesheet_are_served():
+def test_service_is_api_only():
     with TestClient(create_app()) as client:
-        landing = client.get("/")
-        stylesheet = client.get("/assets/site.css")
+        root = client.get("/")
+        documentation = client.get("/docs")
 
-    assert landing.status_code == 200
-    assert "Your SMTP server" in landing.text
-    assert "Deploy with Docker or Kubernetes" in landing.text
-    assert stylesheet.status_code == 200
-    assert "--green" in stylesheet.text
+    assert root.status_code == 404
+    assert documentation.status_code == 200
 
 
 def test_versioned_email_endpoint(settings: Settings, monkeypatch):

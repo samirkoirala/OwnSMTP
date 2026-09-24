@@ -22,7 +22,7 @@ Each deployment is single-tenant: operators bring their own SMTP provider and co
 - Request correlation IDs and baseline browser security headers
 - CI checks for tests, coverage, linting, typing, and container builds
 - Tagged container releases through GitHub Container Registry
-- Built-in project landing page and interactive OpenAPI documentation
+- Interactive OpenAPI documentation at `/docs`
 
 ## Quick start
 
@@ -50,7 +50,7 @@ docker compose -f docker-compose.image.yml up -d
 curl --fail http://127.0.0.1:8000/readyz
 ```
 
-Open `http://127.0.0.1:8000/` for the project landing page and `http://127.0.0.1:8000/docs` for interactive API documentation. See the complete [self-hosting guide](docs/SELF_HOSTING.md) before production deployment.
+Open `http://127.0.0.1:8000/docs` for interactive API documentation. See the complete [self-hosting guide](docs/SELF_HOSTING.md) before production deployment.
 
 Send an email:
 
@@ -256,9 +256,7 @@ email_gateway/
 ├── config.py     # environment parsing and validation
 ├── mailer.py     # SMTP connection and message delivery
 ├── schemas.py    # public request/response contracts
-├── security.py   # API-key authentication
-├── web.py        # landing-page route
-└── web/          # static landing-page assets
+└── security.py   # API-key authentication
 ```
 
 Run every local quality check used by CI:

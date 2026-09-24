@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "smtp-relay-api"
-version = "1.1.0"
+version = "1.1.1"
 description = "A small authenticated HTTP-to-SMTP relay"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -33,9 +33,6 @@ Issues = "https://github.com/samirkoirala/send-email/issues"
 
 [tool.setuptools.packages.find]
 include = ["email_gateway*"]
-
-[tool.setuptools.package-data]
-email_gateway = ["web/*.html", "web/*.css"]
 
 [tool.pytest.ini_options]
 pythonpath = ["."]

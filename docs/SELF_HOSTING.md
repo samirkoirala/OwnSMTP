@@ -28,7 +28,7 @@ ALLOWED_FROM_DOMAINS=yourdomain.com
 Pin the image version and start it:
 
 ```bash
-export SMTP_RELAY_VERSION=1.1.0
+export SMTP_RELAY_VERSION=1.1.1
 docker compose -f docker-compose.image.yml pull
 docker compose -f docker-compose.image.yml up -d
 curl --fail http://127.0.0.1:8000/readyz
