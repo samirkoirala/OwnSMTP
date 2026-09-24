@@ -1,6 +1,0 @@
-{$GATEWAY_DOMAIN} {
-	@untrusted not remote_ip {$APP_VM_PUBLIC_IP}
-	respond @untrusted "Forbidden" 403
-
-	reverse_proxy email-gateway:8000
-}

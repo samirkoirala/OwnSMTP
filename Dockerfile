@@ -17,7 +17,6 @@ RUN addgroup --system app && adduser --system --ingroup app app
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
-COPY --chown=app:app main.py .
 COPY --chown=app:app email_gateway ./email_gateway
 
 USER app
