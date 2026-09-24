@@ -23,7 +23,7 @@ dependencies = [
   "email-validator==2.3.0",
   "fastapi==0.141.1",
   "pydantic[email]==2.13.5",
-  "python-dotenv==1.1.1",
+  "python-dotenv==1.2.3",
   "uvicorn==0.53.0",
 ]
 
