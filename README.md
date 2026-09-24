@@ -166,6 +166,8 @@ curl --fail http://127.0.0.1:8000/readyz
 
 Set `SMTP_RELAY_VERSION` to an available immutable release tag in production. The container binds to `127.0.0.1` by default.
 
+The provided `.env.example` currently pins `ghcr.io/samirkoirala/send-email:1.1.1`. Confirm the GHCR package is public before expecting anonymous hosts to pull it.
+
 ### Kubernetes
 
 The included [Kubernetes manifest](deploy/kubernetes.yaml) provides:
