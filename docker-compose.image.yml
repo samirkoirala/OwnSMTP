@@ -1,15 +1,12 @@
 services:
-  email-gateway:
-    build: .
-    image: internal-email-gateway:latest
-    container_name: email-gateway
+  smtp-relay:
+    image: ghcr.io/samirkoirala/send-email:${SMTP_RELAY_VERSION:-latest}
     restart: unless-stopped
     init: true
     stop_grace_period: 20s
     env_file:
       - .env
     ports:
-      # Bind only to the VM's private VPC address in production.
       - "${PRIVATE_BIND_IP:-127.0.0.1}:8000:8000"
     security_opt:
       - no-new-privileges:true

@@ -32,7 +32,10 @@ def main() -> None:
     )
     parser.add_argument("--env-file", default=".env", help="Environment file (default: .env)")
     parser.add_argument("--send-to", help="Send one real test email to this address")
-    parser.add_argument("--from-email", help="Override SMTP_FROM_EMAIL for a test message")
+    parser.add_argument(
+        "--from-email",
+        help="Override the visible From header; SMTP_FROM_EMAIL remains the envelope sender",
+    )
     parser.add_argument("--subject", default="SMTP gateway test", help="Test email subject")
     parser.add_argument(
         "--body",
@@ -74,13 +77,14 @@ def main() -> None:
             else:
                 print("SMTP authentication: skipped (SMTP_AUTH=false)")
             if args.send_to:
-                from_email = args.from_email or required("SMTP_FROM_EMAIL")
+                envelope_from = required("SMTP_FROM_EMAIL")
+                visible_from = args.from_email or envelope_from
                 message = EmailMessage()
-                message["From"] = from_email
+                message["From"] = visible_from
                 message["To"] = args.send_to
                 message["Subject"] = args.subject
                 message.set_content(args.body)
-                refused = server.send_message(message)
+                refused = server.send_message(message, from_addr=envelope_from)
                 if refused:
                     raise RuntimeError("SMTP server refused the test recipient")
                 print(f"Test email accepted for delivery to {args.send_to}")
