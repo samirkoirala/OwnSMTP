@@ -1,15 +1,21 @@
-# SMTP Relay API
+# OwnSMTP
 
 Self-hosted HTTP API for sending email through your own SMTP account.
 
 ## Docker Compose
+
+Pull the image:
+
+```bash
+docker pull ghcr.io/samirkoirala/ownsmtp:1.1.2
+```
 
 Create `docker-compose.yml`:
 
 ```yaml
 services:
   smtp-relay:
-    image: ghcr.io/samirkoirala/send-email:${SMTP_RELAY_VERSION:-1.1.1}
+    image: ghcr.io/samirkoirala/ownsmtp:${SMTP_RELAY_VERSION:-1.1.2}
     restart: unless-stopped
     env_file:
       - .env
@@ -38,7 +44,7 @@ Create `.env`:
 
 ```env
 PRIVATE_BIND_IP=127.0.0.1
-SMTP_RELAY_VERSION=1.1.1
+SMTP_RELAY_VERSION=1.1.2
 API_KEY=replace-with-output-of-openssl-rand-hex-32
 SMTP_HOST=smtp.example.com
 SMTP_PORT=587

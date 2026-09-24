@@ -1,6 +1,6 @@
 services:
   smtp-relay:
-    image: ghcr.io/samirkoirala/send-email:${SMTP_RELAY_VERSION:-1.1.1}
+    image: ghcr.io/samirkoirala/ownsmtp:${SMTP_RELAY_VERSION:-1.1.2}
     restart: unless-stopped
     init: true
     stop_grace_period: 20s

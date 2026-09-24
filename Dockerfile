@@ -3,7 +3,7 @@ FROM python:3.11-slim AS runtime
 ARG VERSION=dev
 ARG REVISION=unknown
 
-LABEL org.opencontainers.image.title="SMTP Relay API" \
+LABEL org.opencontainers.image.title="OwnSMTP" \
       org.opencontainers.image.description="Authenticated HTTP-to-SMTP relay" \
       org.opencontainers.image.version=$VERSION \
       org.opencontainers.image.revision=$REVISION \

@@ -18,7 +18,7 @@ def create_app() -> FastAPI:
     )
     docs_disabled = os.getenv("DISABLE_DOCS", "false").lower() == "true"
     application = FastAPI(
-        title="SMTP Relay API",
+        title="OwnSMTP",
         description="Authenticated HTTP gateway for sending email through SMTP.",
         version=__version__,
         docs_url=None if docs_disabled else "/docs",
